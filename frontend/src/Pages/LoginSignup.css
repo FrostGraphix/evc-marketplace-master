@@ -1,0 +1,172 @@
+/* Split-screen layout */
+.split-screen {
+  display: flex;
+  flex-direction: row;
+  height: 100vh; /* Full viewport height */
+}
+
+/* Left section styling */
+.left-section {
+  flex: 1;
+  background-color: #001f3f; /* Deep navy blue */
+  color: white;
+  display: flex;
+  justify-content: center;
+  align-items: left;
+  text-align: left;
+  padding-left: 10%;
+}
+
+.left-section h1 {
+  font-size: 2.5rem;
+  font-weight: bold;
+  line-height: 1.2;
+}
+
+/* Right section styling */
+.right-section {
+  flex: 1;
+  background-color: #ffffff; /* White background */
+  padding: 3rem;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+.right-section h2 {
+  font-size: 1.8rem;
+  font-weight: bold;
+  color: #001f3f; /* Deep navy blue */
+  margin-bottom: 1rem;
+}
+
+.right-section p {
+  font-size: 1rem;
+  margin-bottom: 1.5rem;
+  color: #555555; /* Gray text for description */
+}
+
+.right-section a {
+  font-weight: bold;
+  text-decoration: none;
+  color: #001f3f; /* Deep navy blue */
+}
+
+.right-section a:hover {
+  text-decoration: underline;
+  color: #ffa500; /* Orange on hover */
+}
+
+/* Form container */
+.form-container {
+  width: 100%;
+  max-width: 500px;
+  display: flex;
+  flex-direction: column;
+}
+
+label {
+  font-size: 1rem;
+  font-weight: bold;
+  margin-bottom: 0.5rem;
+  color: #001f3f; /* Deep navy blue */
+}
+
+input {
+  width: 100%;
+  padding: 0.8rem;
+  margin-bottom: 1.5rem;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+  font-size: 0.9rem;
+}
+
+input:focus {
+  border-color: #001f3f; /* Deep navy blue */
+  outline: none;
+  box-shadow: 0 0 3px rgba(0, 31, 63, 0.5);
+}
+
+/* Password container for visibility toggle */
+.password-container {
+  position: relative;
+}
+
+.password-toggle {
+  position: absolute;
+  right: 10px;
+  top: 50%;
+  transform: translateY(-50%);
+  cursor: pointer;
+  color: #001f3f;
+}
+
+/* Forgot password link */
+.forgot-password-link {
+  display: block;
+  text-align: right;
+  color: #001f3f; /* Deep navy blue */
+  margin-bottom: 1.5rem;
+  font-size: 0.9rem;
+}
+
+.forgot-password-link:hover {
+  text-decoration: underline;
+}
+
+/* Submit button */
+.submit-button {
+  background-color: #001f3f; /* Deep navy blue */
+  color: white;
+  padding: 0.8rem;
+  border: none;
+  border-radius: 5px;
+  font-size: 1rem;
+  font-weight: bold;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  width: 100%;
+}
+
+.submit-button:hover {
+  background-color: #ffa500; /* Orange */
+  transform: scale(1.05); /* Slight scaling effect */
+}
+
+.submit-button:disabled {
+  background-color: #555555; /* Gray for disabled state */
+  cursor: not-allowed;
+}
+
+/* Full-width container adjustment */
+.full-width {
+  width: 100%;
+  padding: 0;
+  margin: 0;
+  box-sizing: border-box;
+}
+
+/* Removed unnecessary top margins */
+.right-section h2,
+.right-section p {
+  margin-top: 0;
+}
+
+/* Removed any global div styling conflicts */
+
+/* Responsive adjustments */
+@media (max-width: 768px) {
+  .split-screen {
+    flex-direction: column;
+  }
+
+  .left-section {
+    display: none; /* Hide left section on smaller screens */
+  }
+
+  .right-section {
+    width: 100%;
+    padding: 2rem;
+  }
+}
