@@ -1,0 +1,19 @@
+{
+  "files": {
+    "main.css": "/static/css/main.f65050c7.css",
+    "main.js": "/static/js/main.8a8d1905.js",
+    "static/js/453.ed3810f9.chunk.js": "/static/js/453.ed3810f9.chunk.js",
+    "static/media/success.gif": "/static/media/success.71f3f7a6d8059b2c288b.gif",
+    "static/media/EVC Logo White.png": "/static/media/EVC Logo White.40d6049b927ad794c337.png",
+    "static/media/EVC.png": "/static/media/EVC.cdd1eb768625766e1bb7.png",
+    "static/media/cancelnew.jpg": "/static/media/cancelnew.45987e0040c304cb4626.jpg",
+    "index.html": "/index.html",
+    "main.f65050c7.css.map": "/static/css/main.f65050c7.css.map",
+    "main.8a8d1905.js.map": "/static/js/main.8a8d1905.js.map",
+    "453.ed3810f9.chunk.js.map": "/static/js/453.ed3810f9.chunk.js.map"
+  },
+  "entrypoints": [
+    "static/css/main.f65050c7.css",
+    "static/js/main.8a8d1905.js"
+  ]
+}
