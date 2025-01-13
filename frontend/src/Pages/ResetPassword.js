@@ -1,10 +1,10 @@
 import React, { useState } from 'react';
 import { useParams } from 'react-router-dom';
+// import { useDispatch } from 'react-redux';
+// import { resetPasswordAction } from 'path-to-your-redux-actions';
 
 const ResetPassword = () => {
-  // We assume `dispatch` and `resetPasswordAction` are accessible 
-  // from your existing Redux setup (no imports shown here).
-  const dispatch = useDispatch();
+  // const dispatch = useDispatch();
 
   const [password, setPassword] = useState('');
   const [confirmPassword, setConfirmPassword] = useState('');
@@ -17,23 +17,18 @@ const ResetPassword = () => {
       setMessage('Passwords do not match');
       return;
     }
-    
-    try {
-      // Dispatch the Redux action (e.g., created via createAsyncThunk)
-      const resultAction = await dispatch(
-        resetPasswordAction({ token, password })
-      );
 
-      // Check your action’s response payload
-      if (resultAction.payload && resultAction.payload.message) {
-        setMessage(resultAction.payload.message);
-      } else {
-        setMessage('Error resetting password. Please try again.');
-      }
-    } catch (error) {
-      console.error(error);
-      setMessage('Error resetting password. Please try again.');
-    }
+    // ====== Commented Out Redux Dispatch ======
+    // const resultAction = await dispatch(resetPasswordAction({ token, password }));
+    // if (resultAction.payload && resultAction.payload.message) {
+    //   setMessage(resultAction.payload.message);
+    // } else {
+    //   setMessage('Error resetting password. Please try again.');
+    // }
+
+    // ====== Temporary Implementation ======
+    console.log('Reset password data:', { token, password });
+    setMessage('Password reset action simulated.');
   };
 
   return (

@@ -1,9 +1,10 @@
 import React, { useState } from 'react';
+// import { useDispatch } from 'react-redux';
+// import { uploadDocument } from 'path-to-your-redux-actions';
 
 const AdminUploadDocuments = () => {
-  // We assume `dispatch` and `uploadDocument` are accessible 
-  // from your existing Redux setup (no imports needed here).
-  const dispatch = useDispatch();
+  // ====== Redux Hooks & Actions (commented out) ======
+  // const dispatch = useDispatch();
 
   const [formData, setFormData] = useState({
     buyerName: '',
@@ -22,31 +23,38 @@ const AdminUploadDocuments = () => {
 
   const handleSubmit = async (e) => {
     e.preventDefault();
-    try {
-      // Dispatch the Redux action (e.g., created via createAsyncThunk)
-      // This action should handle the POST internally instead of axios directly.
-      const resultAction = await dispatch(uploadDocument(formData));
 
-      // Check your action’s response payload or meta for success
-      if (resultAction.payload && resultAction.payload.success) {
-        alert('Document uploaded successfully!');
-        // Reset form
-        setFormData({
-          buyerName: '',
-          email: '',
-          propertyPrice: '',
-          propertyLocation: '',
-          propertyTitle: '',
-          purchasedDate: '',
-          documentLink: '',
-        });
-      } else {
-        alert('Error uploading document');
-      }
-    } catch (error) {
-      console.error(error);
-      alert('Error uploading document');
-    }
+    // ====== Commented Out Redux Dispatch ======
+    // const resultAction = await dispatch(uploadDocument(formData));
+    // if (resultAction.payload && resultAction.payload.success) {
+    //   alert('Document uploaded successfully!');
+    //   setFormData({
+    //     buyerName: '',
+    //     email: '',
+    //     propertyPrice: '',
+    //     propertyLocation: '',
+    //     propertyTitle: '',
+    //     purchasedDate: '',
+    //     documentLink: '',
+    //   });
+    // } else {
+    //   alert('Error uploading document');
+    // }
+
+    // ====== Temporary Implementation ======
+    console.log('Form data:', formData);
+    alert('Document upload action simulated.');
+
+    // Reset form
+    setFormData({
+      buyerName: '',
+      email: '',
+      propertyPrice: '',
+      propertyLocation: '',
+      propertyTitle: '',
+      purchasedDate: '',
+      documentLink: '',
+    });
   };
 
   return (

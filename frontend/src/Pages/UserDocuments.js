@@ -1,22 +1,26 @@
-import React, { useEffect } from 'react';
+import React, { useEffect, useState } from 'react';
+// import { useDispatch, useSelector } from 'react-redux';
+// import { fetchUserDocuments } from 'path-to-your-redux-actions';
 
 const UserDocuments = () => {
-  // We assume `dispatch` and `fetchUserDocuments` are accessible
-  // from your existing Redux setup (no imports shown here).
-  const dispatch = useDispatch();
+  // const dispatch = useDispatch();
+  // const documents = useSelector((state) => state.documents.userDocuments);
 
-  // Get userEmail from localStorage (or from Redux/Context if available)
+  // We'll keep local state to store documents so it compiles
+  const [documents, setDocuments] = useState([]);
+
+  // If the user’s email is stored in localStorage (as you had before)
   const userEmail = localStorage.getItem('userEmail');
 
-  // Get the documents from your Redux store
-  // Make sure this selector matches your Redux structure
-  const documents = useSelector((state) => state.documents.userDocuments);
-
   useEffect(() => {
-    if (userEmail) {
-      dispatch(fetchUserDocuments(userEmail));
-    }
-  }, [dispatch, userEmail]);
+    // ====== Commented Out Redux Dispatch ======
+    // if (userEmail) {
+    //   dispatch(fetchUserDocuments(userEmail));
+    // }
+
+    // Temporarily set documents to an empty array (or mock data)
+    setDocuments([]);
+  }, [userEmail]);
 
   const handleCopy = (link) => {
     navigator.clipboard.writeText(link);
@@ -26,7 +30,7 @@ const UserDocuments = () => {
   return (
     <div className="user-documents-container">
       <h2 className="text-center">My Documents</h2>
-      {(!documents || documents.length === 0) ? (
+      {documents.length === 0 ? (
         <p className="text-center">No documents found.</p>
       ) : (
         <div className="table-responsive">
@@ -44,22 +48,30 @@ const UserDocuments = () => {
               </tr>
             </thead>
             <tbody>
-              {documents.map((doc) => (
-                <tr key={doc._id}>
-                  <td>{doc.buyerName}</td>
-                  <td>{doc.email}</td>
-                  <td>{doc.propertyPrice}</td>
-                  <td>{doc.propertyLocation}</td>
-                  <td>{doc.propertyTitle}</td>
-                  <td>{new Date(doc.purchasedDate).toLocaleDateString()}</td>
+              {documents.map((doc, index) => (
+                <tr key={index}>
+                  <td>{doc.buyerName || 'N/A'}</td>
+                  <td>{doc.email || 'N/A'}</td>
+                  <td>{doc.propertyPrice || 'N/A'}</td>
+                  <td>{doc.propertyLocation || 'N/A'}</td>
+                  <td>{doc.propertyTitle || 'N/A'}</td>
                   <td>
-                    <a
-                      href={doc.documentLink}
-                      target="_blank"
-                      rel="noopener noreferrer"
-                    >
-                      {doc.documentLink}
-                    </a>
+                    {doc.purchasedDate
+                      ? new Date(doc.purchasedDate).toLocaleDateString()
+                      : 'N/A'}
+                  </td>
+                  <td>
+                    {doc.documentLink ? (
+                      <a
+                        href={doc.documentLink}
+                        target="_blank"
+                        rel="noopener noreferrer"
+                      >
+                        {doc.documentLink}
+                      </a>
+                    ) : (
+                      'No Link'
+                    )}
                   </td>
                   <td>
                     <button

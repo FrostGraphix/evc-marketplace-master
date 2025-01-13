@@ -1,16 +1,22 @@
-import React, { useEffect } from 'react';
+import React, { useEffect, useState } from 'react';
+// import { useDispatch, useSelector } from 'react-redux';
+// import { fetchDocuments } from 'path-to-your-redux-actions';
 
 const AdminPanelDocuments = () => {
-  // Access the Redux store's documents state
-  const documents = useSelector((state) => state.documents.data);
+  // ====== Redux Hooks & Actions (commented out) ======
+  // const dispatch = useDispatch();
+  // const documents = useSelector((state) => state.documents.data);
 
-  // Access the dispatch function from Redux
-  const dispatch = useDispatch();
+  // ====== Temporary Local State ======
+  const [documents, setDocuments] = useState([]);
 
-  // Dispatch the Redux action that fetches documents when the component mounts
   useEffect(() => {
-    dispatch(fetchDocuments());
-  }, [dispatch]);
+    // ====== Commented Out Redux Dispatch ======
+    // dispatch(fetchDocuments());
+
+    // If you want to keep some placeholder data, you could set it here:
+    setDocuments([]); // or any mock data
+  }, []);
 
   return (
     <div className="admin-documents-container min-h-screen bg-gray-50 py-8 px-4 sm:px-6 lg:px-8">
@@ -45,8 +51,8 @@ const AdminPanelDocuments = () => {
             </tr>
           </thead>
           <tbody className="divide-y divide-gray-100">
-            {documents && documents.map((doc) => (
-              <tr key={doc._id} className="hover:bg-gray-50">
+            {documents.map((doc, index) => (
+              <tr key={index} className="hover:bg-gray-50">
                 <td className="py-3 px-4 text-sm text-gray-700">
                   {doc.buyerName}
                 </td>
@@ -63,16 +69,18 @@ const AdminPanelDocuments = () => {
                   {doc.propertyTitle}
                 </td>
                 <td className="py-3 px-4 text-sm text-gray-700">
-                  {new Date(doc.purchasedDate).toLocaleDateString()}
+                  {doc.purchasedDate
+                    ? new Date(doc.purchasedDate).toLocaleDateString()
+                    : 'N/A'}
                 </td>
                 <td className="py-3 px-4 text-sm text-blue-600 underline">
                   <a
-                    href={doc.documentLink}
+                    href={doc.documentLink || '#'}
                     target="_blank"
                     rel="noopener noreferrer"
                     className="hover:text-blue-800"
                   >
-                    {doc.documentLink}
+                    {doc.documentLink || 'No Link'}
                   </a>
                 </td>
               </tr>
