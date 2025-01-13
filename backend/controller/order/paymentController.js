@@ -26,7 +26,7 @@ const paymentController = async (request, response) => {
                     quantity: item.quantity,
                 })),
             },
-            callback_url: `${process.env.FRONTEND_URL}/success`, // Success URL
+            callback_url: `${process.env.REACT_APP_FRONTEND_URL}/success`, // Success URL
         };
 
         // Make an API call to Paystack to initialize the transaction
