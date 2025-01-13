@@ -1,4 +1,4 @@
-const backendDomain = "http://localhost:8080"
+const backendDomain = "https://evc-marketplace-master-pl5i.vercel.app/"
 
 const SummaryApi = {
     signUp : {
