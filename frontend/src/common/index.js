@@ -1,4 +1,4 @@
-const backendDomain = "${process.env.BACKEND_URL}"
+const backendDomain = "https://evc-marketplace-master-pl5i.vercel.app"
 
 const SummaryApi = {
     signUp : {
