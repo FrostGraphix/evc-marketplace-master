@@ -1,7 +1,10 @@
 import React, { useState } from 'react';
 
-
 const AdminUploadDocuments = () => {
+  // We assume `dispatch` and `uploadDocument` are accessible 
+  // from your existing Redux setup (no imports needed here).
+  const dispatch = useDispatch();
+
   const [formData, setFormData] = useState({
     buyerName: '',
     email: '',
@@ -20,8 +23,12 @@ const AdminUploadDocuments = () => {
   const handleSubmit = async (e) => {
     e.preventDefault();
     try {
-      const res = await axios.post('/api/document/create', formData);
-      if (res.data.success) {
+      // Dispatch the Redux action (e.g., created via createAsyncThunk)
+      // This action should handle the POST internally instead of axios directly.
+      const resultAction = await dispatch(uploadDocument(formData));
+
+      // Check your action’s response payload or meta for success
+      if (resultAction.payload && resultAction.payload.success) {
         alert('Document uploaded successfully!');
         // Reset form
         setFormData({
@@ -33,6 +40,8 @@ const AdminUploadDocuments = () => {
           purchasedDate: '',
           documentLink: '',
         });
+      } else {
+        alert('Error uploading document');
       }
     } catch (error) {
       console.error(error);

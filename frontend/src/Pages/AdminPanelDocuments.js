@@ -1,24 +1,16 @@
-import React, { useEffect, useState } from 'react';
-
+import React, { useEffect } from 'react';
 
 const AdminPanelDocuments = () => {
-  const [documents, setDocuments] = useState([]);
+  // Access the Redux store's documents state
+  const documents = useSelector((state) => state.documents.data);
 
+  // Access the dispatch function from Redux
+  const dispatch = useDispatch();
+
+  // Dispatch the Redux action that fetches documents when the component mounts
   useEffect(() => {
-    // Fetch all documents
-    const fetchDocs = async () => {
-      try {
-        const res = await axios.get('/api/documents');
-        if (res.data.success) {
-          setDocuments(res.data.data);
-        }
-      } catch (error) {
-        console.error(error);
-      }
-    };
-
-    fetchDocs();
-  }, []);
+    dispatch(fetchDocuments());
+  }, [dispatch]);
 
   return (
     <div className="admin-documents-container min-h-screen bg-gray-50 py-8 px-4 sm:px-6 lg:px-8">
@@ -53,7 +45,7 @@ const AdminPanelDocuments = () => {
             </tr>
           </thead>
           <tbody className="divide-y divide-gray-100">
-            {documents.map((doc) => (
+            {documents && documents.map((doc) => (
               <tr key={doc._id} className="hover:bg-gray-50">
                 <td className="py-3 px-4 text-sm text-gray-700">
                   {doc.buyerName}

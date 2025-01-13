@@ -1,30 +1,22 @@
-import React, { useEffect, useState } from 'react';
-
+import React, { useEffect } from 'react';
 
 const UserDocuments = () => {
-  const [documents, setDocuments] = useState([]);
-  // If you have user info from Redux or Context, you can fetch the user’s email.
-  // For example:
-  // const user = useSelector((state) => state.auth.user);
-  // const userEmail = user.email;
-  // For now, let's assume we already have the user’s email from localStorage or context:
-  const userEmail = localStorage.getItem('userEmail'); // adjust as needed
+  // We assume `dispatch` and `fetchUserDocuments` are accessible
+  // from your existing Redux setup (no imports shown here).
+  const dispatch = useDispatch();
+
+  // Get userEmail from localStorage (or from Redux/Context if available)
+  const userEmail = localStorage.getItem('userEmail');
+
+  // Get the documents from your Redux store
+  // Make sure this selector matches your Redux structure
+  const documents = useSelector((state) => state.documents.userDocuments);
 
   useEffect(() => {
-    const fetchUserDocuments = async () => {
-      try {
-        if (!userEmail) return;
-        const res = await axios.get(`/api/documents/${userEmail}`);
-        if (res.data.success) {
-          setDocuments(res.data.data);
-        }
-      } catch (error) {
-        console.error(error);
-      }
-    };
-
-    fetchUserDocuments();
-  }, [userEmail]);
+    if (userEmail) {
+      dispatch(fetchUserDocuments(userEmail));
+    }
+  }, [dispatch, userEmail]);
 
   const handleCopy = (link) => {
     navigator.clipboard.writeText(link);
@@ -34,7 +26,7 @@ const UserDocuments = () => {
   return (
     <div className="user-documents-container">
       <h2 className="text-center">My Documents</h2>
-      {documents.length === 0 ? (
+      {(!documents || documents.length === 0) ? (
         <p className="text-center">No documents found.</p>
       ) : (
         <div className="table-responsive">

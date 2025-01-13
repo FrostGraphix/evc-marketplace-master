@@ -2,6 +2,10 @@ import React, { useState } from 'react';
 import { useParams } from 'react-router-dom';
 
 const ResetPassword = () => {
+  // We assume `dispatch` and `resetPasswordAction` are accessible 
+  // from your existing Redux setup (no imports shown here).
+  const dispatch = useDispatch();
+
   const [password, setPassword] = useState('');
   const [confirmPassword, setConfirmPassword] = useState('');
   const [message, setMessage] = useState('');
@@ -13,10 +17,21 @@ const ResetPassword = () => {
       setMessage('Passwords do not match');
       return;
     }
+    
     try {
-      const response = await axios.post(`/api/reset/${token}`, { password });
-      setMessage(response.data.message);
+      // Dispatch the Redux action (e.g., created via createAsyncThunk)
+      const resultAction = await dispatch(
+        resetPasswordAction({ token, password })
+      );
+
+      // Check your action’s response payload
+      if (resultAction.payload && resultAction.payload.message) {
+        setMessage(resultAction.payload.message);
+      } else {
+        setMessage('Error resetting password. Please try again.');
+      }
     } catch (error) {
+      console.error(error);
       setMessage('Error resetting password. Please try again.');
     }
   };
