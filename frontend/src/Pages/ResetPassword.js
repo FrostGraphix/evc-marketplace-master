@@ -15,7 +15,7 @@ const ResetPassword = () => {
       return;
     }
     try {
-      const response = await axios.post(`/api/reset/${bef318c350b0e403025f388ff2fca0ba}`, { password });
+      const response = await axios.post(`/api/reset/${token}`, { password });
       setMessage(response.data.message);
     } catch (error) {
       setMessage('Error resetting password. Please try again.');
