@@ -151,7 +151,7 @@ module.exports = UserSignUpController;
 //                 _id: user.id,
 //                 email: user.email,
 //             };
-//             const token = jwt.sign(tokenData, process.env.JWT_SECRET, { expiresIn: 60 * 60 * 8 }); // token will expire after 8 hours
+//             const token = jwt.sign(tokenData, process.env.TOKEN_SECRET_KEY, { expiresIn: 60 * 60 * 8 }); // token will expire after 8 hours
 
 //             const cookieOptions = {
 //                 httpOnly: true,
@@ -210,7 +210,7 @@ async function userSignInController(req, res) {
                 _id: user.id,
                 email: user.email,
             };
-            const token = jwt.sign(tokenData, process.env.JWT_SECRET, { expiresIn: 60 * 60 * 8 }); // token will expire after 8 hours
+            const token = jwt.sign(tokenData, process.env.TOKEN_SECRET_KEY, { expiresIn: 60 * 60 * 8 }); // token will expire after 8 hours
 
             const cookieOptions = {
                 httpOnly: true,
