@@ -16,7 +16,7 @@ async function authToken(req, res, next) {
     }
 
     // Verify the token
-    jwt.verify(token, process.env.TOKEN_SECRET_KEY, function (err, decoded) {
+    jwt.verify(token, process.env.JWT_SECRET, function (err, decoded) {
       if (err) {
         console.log("Error in auth:", err);
         return res.status(401).json({
@@ -63,7 +63,7 @@ async function authToken(req, res, next) {
     }
 
     // Verify the token
-    jwt.verify(token, process.env.TOKEN_SECRET_KEY, (err, decoded) => {
+    jwt.verify(token, process.env.JWT_SECRET, (err, decoded) => {
       if (err) {
         return res.status(403).json({
           message: "Invalid token. Please login again.",
