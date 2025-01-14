@@ -1,4 +1,4 @@
-const backendDomain = "https://marketplace-evcng.onrender.com";
+const backendDomain = process.env.REACT_APP_BACKEND_URL || "https://marketplace-evcng.onrender.com";
 
 
 const SummaryApi = {
@@ -99,7 +99,7 @@ const SummaryApi = {
         method: 'post',
     },
     resetPassword: {
-        url: `${backendDomain}/api/reset/:bef318c350b0e403025f388ff2fca0ba`, // Note: Replace :token with actual token when making the request
+        url: `${backendDomain}/api/reset/:token`, // Note: Replace :token with actual token when making the request
         method: 'post',
     },
     createDocument: {
