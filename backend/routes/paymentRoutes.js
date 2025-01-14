@@ -9,7 +9,7 @@ router.post('/initialize', async (req, res) => {
         const response = await paystack.transaction.initialize({
             email,
             amount: amount * 100, // Convert to kobo
-            callback_url: 'http://localhost:3000/verify'
+            callback_url: 'https://evc-marketplace-master.vercel.app/verify'
         });
         res.status(200).json(response.data);
     } catch (error) {
