@@ -1,4 +1,4 @@
-const backendDomain = "https://marketplace-evcng.onrender.com";
+const backendDomain = "https://evc-marketplace-backend.vercel.app";
 
 
 const SummaryApi = {
