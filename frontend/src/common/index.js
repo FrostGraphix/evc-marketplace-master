@@ -1,4 +1,4 @@
-const backendDomain = process.env.REACT_APP_BACKEND_URL || "https://evc-marketplace-backend.vercel.app/";
+const backendDomain = "https://evc-marketplace-backend.vercel.app";
 
 
 const SummaryApi = {
