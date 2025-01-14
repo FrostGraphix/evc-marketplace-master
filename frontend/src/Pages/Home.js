@@ -29,7 +29,7 @@ function Home() {
       <div className="relative w-full h-80vh py-4 px-6 sm:px-12 lg:px-24 overflow-hidden">
         <div className="max-w-[1200px] mx-auto text-center flex flex-col items-center justify-start space-y-6 md:space-y-8 transition-all duration-700 ease-out mt-24 md:mt-32">
           <h1 className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-extrabold text-[#232936] transition-transform duration-500 transform hover:scale-105">
-            Explore EVC's <span className="text-[#FF6700]">Marketplace</span>
+            Explore EVC's <span className="text-[rgb(255,103,0)]">Marketplace</span>
           </h1>
           <p className="text-gray-700 text-base sm:text-lg md:text-xl max-w-2xl mx-auto leading-relaxed">
           Discover a world of quality products, trusted sellers, and exceptional deals. Whether you're looking to find a new treasure or list your own, we've made it easier for you to thrive in our community.
