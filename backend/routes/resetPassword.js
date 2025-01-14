@@ -4,7 +4,7 @@ const bcrypt = require('bcryptjs');
 const { resetPassword } = require('../controller/resetPasswordController');
 const User = require('../models/User'); // Assuming you have a User model
 
-router.post('/reset/:bef318c350b0e403025f388ff2fca0ba', async (req, res) => {
+router.post('/reset/:token', async (req, res) => {
   const { token } = req.params;
   const { password } = req.body;
 
